@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from 'axios'
-
 import { Cast, Episode, Film, Genre, Season, Trailer } from '../interfaces'
 import { MediaType } from '../types'
 import { formatResult } from '../utils'

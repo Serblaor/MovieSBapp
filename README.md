@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+## MOVIESBAPP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicación web para buscar y descubrir películas y programas de televisión. Proporciona una interfaz de usuario intuitiva para explorar contenido, realizar búsquedas y obtener detalles sobre películas, programas de televisión, actores, temporadas y más.
 
-## Available Scripts
+## Guía de inicio rápido
 
-In the project directory, you can run:
+Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 
-### `yarn start`
+### Requisitos previos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Asegúrate de tener instalado lo siguiente en tu sistema:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js
+- Yarn
 
-### `yarn test`
+### Pasos de instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clona el repositorio de GitHub:
 
-### `yarn build`
+   ```shell
+   git clone https://github.com/Serblaor/MovieSBapp
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ve al directorio del proyecto:
+cd moviesbapp
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Instala las dependencias utilizando Yarn:
+yarn install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### Inicia la aplicación:
+yarn start
+Abre tu navegador web y accede a http://localhost:3000 para ver la aplicación en funcionamiento.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### API expuestas
+El proyecto utiliza la API de TMDB (The Movie Database) para obtener información sobre películas, programas de televisión, actores y más. Puedes obtener una clave de API gratuita registrándote en el sitio web de TMDB y siguiendo sus instrucciones para obtener una clave de API.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Razones para usar MOVIESBAPP
+Interfaz intuitiva y fácil de usar.
+Amplia base de datos de películas y programas de televisión.
+Búsqueda rápida y precisa de contenido.
+Información detallada sobre películas, actores, temporadas, etc.
+Diseño responsive para adaptarse a diferentes dispositivos.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Uso
+Aquí hay algunas características destacadas de MOVIESBAPP:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Búsqueda avanzada de películas y programas de televisión.
+Información detallada de películas y programas de televisión, incluyendo sinopsis, reparto, temporadas, géneros, etc.
+Visualización de trailers y avances de películas.
+Exploración de películas y programas de televisión por género.
+Interfaz amigable para dispositivos móviles.

@@ -18,3 +18,6 @@
 .slick-hero .slick-next {
   right: 25px;
 }
+.slider-container {
+  margin-top: 2px; /* Ajusta el valor según tu preferencia */
+}

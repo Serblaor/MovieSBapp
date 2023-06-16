@@ -43,6 +43,7 @@ export const Slider = (props: Props) => {
   const [onSwipe, setOnSwipe] = useState(false)
 
   return (
+    <div className="slider-container"> {/* Agrega un contenedor con una clase CSS */}
     <Slick
       autoplay={false}
       {...settings}
@@ -52,5 +53,6 @@ export const Slider = (props: Props) => {
     >
       {props.children ? props.children(onSwipe) : ''}
     </Slick>
+    </div>
   )
 }

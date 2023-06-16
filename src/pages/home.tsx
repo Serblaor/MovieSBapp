@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getInTheaters, getPopulars, getTopRated, getTrailers, getTrendings } from '../api/tmdb-api'
+import {
+  getInTheaters,
+  getPopulars,
+  getTopRated,
+  getTrailers,
+  getTrendings,
+} from '../api/tmdb-api'
 import { Card } from '../components/card'
 import { Section } from '../components/section'
 import { Slider } from '../components/slider/slider'
@@ -10,6 +16,9 @@ import { TrendingHero } from '../components/trending-hero'
 import { Film } from '../interfaces'
 import { mergeFilms, tmdbImageSrc } from '../utils'
 
+/**
+ * Componente de la página principal que muestra los elementos más destacados, como películas populares, películas mejor calificadas, etc.
+ */
 export const Home = () => {
   const navigate = useNavigate()
 
@@ -21,24 +30,41 @@ export const Home = () => {
 
   const [trailerSrc, setTrailerSrc] = useState('')
 
+  /**
+   * Reproduce el tráiler de una película en el modal correspondiente.
+   * @param film La película para reproducir el tráiler.
+   */
   const playTrailer = async (film: Film) => {
     const trailers = await getTrailers(film.mediaType, film.id)
 
     setTrailerSrc(`https://www.youtube.com/embed/${trailers[0].key}?autoplay=0`)
   }
 
+  /**
+   * Navega a la página de detalles de una película.
+   * @param film La película para la cual se mostrarán los detalles.
+   */
   const goToDetailPage = (film: Film) => {
     navigate(`/${film.mediaType}/${film.id}`)
   }
 
+  /**
+   * Obtiene las películas mejor calificadas en la categoría de películas.
+   */
   const fetchTopRatedMovie = async () => {
-    setTopRatedMovie(await (await getTopRated('movie')).films)
+    setTopRatedMovie((await getTopRated('movie')).films)
   }
 
+  /**
+   * Obtiene las películas mejor calificadas en la categoría de programas de televisión.
+   */
   const fetchTopRatedTv = async () => {
-    setTopRatedTv(await (await getTopRated('tv')).films)
+    setTopRatedTv((await getTopRated('tv')).films)
   }
 
+  /**
+   * Obtiene las películas populares en las categorías de películas y programas de televisión y las fusiona en una sola lista.
+   */
   const fetchPopulars = async () => {
     const movies = await getPopulars('movie')
     const tvs = await getPopulars('tv')
@@ -46,10 +72,16 @@ export const Home = () => {
     setPopulars(mergeFilms(movies, tvs, 20))
   }
 
+  /**
+   * Obtiene las películas que están en los cines actualmente.
+   */
   const fetchInTheaters = async () => {
     setInTheaters(await getInTheaters())
   }
 
+  /**
+   * Obtiene las películas y programas de televisión más populares en las categorías de películas y programas de televisión y las fusiona en una sola lista.
+   */
   const fetchTrending = async () => {
     const movies = await getTrendings('movie')
     const tvs = await getTrendings('tv')
@@ -58,6 +90,7 @@ export const Home = () => {
   }
 
   useEffect(() => {
+    // Realiza las solicitudes de API necesarias cuando el componente se monta.
     fetchTrending()
     fetchInTheaters()
     fetchPopulars()
@@ -67,11 +100,10 @@ export const Home = () => {
 
   return (
     <>
-      <TrailerModal
-        onHide={() => setTrailerSrc('')}
-        src={trailerSrc}
-      ></TrailerModal>
-      {/* trendings */}
+      {/* Modal de tráiler */}
+      <TrailerModal onHide={() => setTrailerSrc('')} src={trailerSrc} />
+
+      {/* Sección de elementos más destacados */}
       <Section className="py-0" hidden={trendings.length === 0}>
         <Slider
           className="slick-hero"
@@ -88,12 +120,13 @@ export const Home = () => {
                 }
                 film={film}
                 key={i}
-              ></TrendingHero>
+              />
             ))
           }
         </Slider>
       </Section>
-      {/* in theaters */}
+
+      {/* Sección de películas en cines */}
       <Section title="In Theaters" hidden={inTheaters.length === 0}>
         <Slider isMovieCard={true}>
           {(_) =>
@@ -103,12 +136,13 @@ export const Home = () => {
                 title={film.title}
                 imageSrc={tmdbImageSrc(film.posterPath)}
                 key={i}
-              ></Card>
+              />
             ))
           }
         </Slider>
       </Section>
-      {/* populars */}
+
+      {/* Sección de películas populares */}
       <Section title="What's Popular" hidden={populars.length === 0}>
         <Slider isMovieCard={true}>
           {(_) =>
@@ -118,12 +152,13 @@ export const Home = () => {
                 title={film.title}
                 imageSrc={tmdbImageSrc(film.posterPath)}
                 key={i}
-              ></Card>
+              />
             ))
           }
         </Slider>
       </Section>
-      {/* top rated tv */}
+
+      {/* Sección de programas de televisión mejor calificados */}
       <Section
         title="Top Rated TV"
         hidden={topRatedTv.length === 0}
@@ -137,12 +172,13 @@ export const Home = () => {
                 title={film.title}
                 imageSrc={tmdbImageSrc(film.posterPath)}
                 key={i}
-              ></Card>
+              />
             ))
           }
         </Slider>
       </Section>
-      {/* to rated movies*/}
+
+      {/* Sección de películas mejor calificadas */}
       <Section
         hidden={topRatedMovie.length === 0}
         title="Top Rated Movies"
@@ -156,7 +192,7 @@ export const Home = () => {
                 title={film.title}
                 imageSrc={tmdbImageSrc(film.posterPath)}
                 key={i}
-              ></Card>
+              />
             ))
           }
         </Slider>
@@ -164,3 +200,4 @@ export const Home = () => {
     </>
   )
 }
+

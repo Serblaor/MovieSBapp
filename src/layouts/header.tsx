@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import { Container } from '../components/container'
 import { SearchResult } from '../components/search-result'
 import { mergeClassName } from '../utils'
+import logoImage from './logo/moviesbapp1.png';
 
 const MENU_CLASS = `
   py-1
@@ -61,6 +62,16 @@ export const Header = () => {
     return mergeClassName(MENU_CLASS, '')
   }
 
+  // const Logo = () => {
+  //   const logoImage = '../../public/moviesbapp1.png';
+  //   return (
+  //     <Link to={'/'}>
+  //       <img src={logoImage} alt="Logo" className="w-12 h-12" />
+  //     </Link>
+  //   );
+  // };
+
+
   useEffect(() => {
     setPathname(location.pathname)
     pathnameRef.current = location.pathname
@@ -80,17 +91,17 @@ export const Header = () => {
     <div className="bg-header sticky top-0 z-[99]">
       <Container className="flex items-center justify-between gap-3">
         {/* brand & menu */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           {/* brand */}
-          <h1 className="text-2xl font-semibold">
-            <Link to={'/'}>Movielia</Link>
-          </h1>
+          <Link to={'/'}>
+            <img src={logoImage} alt="Logo" className="w-32 h-19" />
+          </Link>
           {/*  menu */}
           <div
             className="
             pt-1.5
-            flex 
-            items-center 
+            flex
+            items-center
             gap-1.5
             mobile:fixed
             mobile:bottom-0
@@ -103,10 +114,10 @@ export const Header = () => {
             "
           >
             <Link className={getMenuClass('/movies')} to={'/movies'}>
-              Movies
+              MOVIES
             </Link>
             <Link className={getMenuClass('/tv')} to={'/tv'}>
-              TV
+              TV PROGRAMS
             </Link>
           </div>
         </div>

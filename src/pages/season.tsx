@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
 import { getSeason } from '../api/tmdb-api'
 import { Image } from '../components/image'
 import { Section } from '../components/section'
 import { Season as SeasonInterface } from '../interfaces'
 import { formatDate, tmdbImageSrc } from '../utils'
 
+/**
+ * Componente que muestra los detalles de una temporada de una serie de televisión.
+ */
 export const Season = () => {
   const [season, setSeason] = useState<SeasonInterface | null>(null)
 
   const params = useParams<any>()
 
+  /**
+   * Función asíncrona para obtener los datos de la temporada y actualizar el estado.
+   */
   const fetch = async () => {
     setSeason(
       await getSeason(
@@ -25,13 +30,18 @@ export const Season = () => {
     fetch()
   }, [])
 
+  /**
+   * Renderiza el componente.
+   * Si no hay datos de la temporada, muestra un fragmento vacío.
+   * Si hay datos de la temporada, muestra los detalles de la temporada y los episodios.
+   */
   if (!season) {
     return <></>
   }
 
   return (
     <>
-      {/* background */}
+      {/* Fondo */}
       <div className="h-[150px] left-0 right-0 top-0 relative">
         <div className="overlay-film-cover"></div>
         <Image
@@ -39,7 +49,7 @@ export const Season = () => {
           src={tmdbImageSrc(season.posterPath)}
         ></Image>
       </div>
-      {/* poster and text */}
+      {/* Póster y texto */}
       <Section className="-mt-[75px] flex items-center relative z-10 mobile:block">
         <Image
           src={tmdbImageSrc(season.posterPath)}
@@ -57,7 +67,7 @@ export const Season = () => {
           </div>
         </div>
       </Section>
-      {/* episodes */}
+      {/* Episodios */}
       <Section title="Episodes">
         {season.episodes.map((episode, i) => (
           <div
@@ -83,3 +93,4 @@ export const Season = () => {
     </>
   )
 }
+
