@@ -49,3 +49,12 @@ Información detallada de películas y programas de televisión, incluyendo sino
 Visualización de trailers y avances de películas.
 Exploración de películas y programas de televisión por género.
 Interfaz amigable para dispositivos móviles.
+
+
+<div align="center">
+  <img alt="Demo" src="./src/layouts/logo/MOVIESBAPPimg.png" />
+</div>
+
+<div align="center">
+  <img alt="Demo" src="./src/layouts/logo/moviesappmobile.png" />
+</div>
